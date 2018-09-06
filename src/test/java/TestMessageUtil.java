@@ -14,6 +14,12 @@ public class TestMessageUtil {
   }
 
   @Test
+  public void testPrintMessageBad() {      
+    System.out.println("Inside testPrintMessage()");     
+    assertEquals(message,"nop");
+  }  
+
+  @Test
   public void testSalutationMessage() {
     System.out.println("Inside testSalutationMessage()");
     message = "Hi!" + "Robert";
