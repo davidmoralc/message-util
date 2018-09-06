@@ -1,6 +1,8 @@
 pipeline {
 	agent { label 'ubuntu-16-git-java-maven' }
-    def username = 'Jenkins'
+    parameters {
+        string(name: 'username', defaultValue: 'Jenkins', description: 'How should I greet the world?')
+    }
     environment {
 		OUTPUT_PATH = './outputs/'
 	}
@@ -35,22 +37,24 @@ pipeline {
                 }
             }
         }
-        parallel {
-            stage('DeployPre') {
-                steps {
-                    echo "Deploy in Pre ${username}"
+        stage('Final stage') {        
+            parallel {
+                stage('DeployPre') {
+                    steps {
+                        echo "Deploy in Pre ${params.username}"
+                    }
+                }
+                stage('DeployPro') {
+                    steps {
+                        echo "Deploy in Pro ${params.username}"
+                    }
                 }
             }
-            stage('DeployPro') {
+            stage('Final stage') {
                 steps {
-                    echo "Deploy en Pro ${username}"
+                    echo "It's Done!"
                 }
-            }
-        }
-        stage('Final stage') {
-            steps {
-                echo "It's Done!"
-            }
-        }        
+            }   
+        }     
     }
 }
