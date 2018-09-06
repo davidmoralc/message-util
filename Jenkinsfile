@@ -1,5 +1,5 @@
 pipeline {
-	agent any
+	agent { label 'ubuntu-16-git-java-maven' }
     stages {
         stage ('Initialize') {
             steps {
