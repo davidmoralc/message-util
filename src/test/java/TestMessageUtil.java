@@ -16,7 +16,7 @@ public class TestMessageUtil {
   @Test
   public void testPrintMessageBad() {      
     System.out.println("Inside testPrintMessage()");     
-    assertEquals(message,"nope3");
+    assertEquals(message,"nope4");
   }  
 
   @Test
