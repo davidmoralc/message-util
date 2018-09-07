@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('Final stage') {        
+        stage('Deploy stage') {        
             parallel {
                 stage('DeployPre') {
                     steps {
