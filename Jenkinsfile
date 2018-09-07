@@ -50,11 +50,11 @@ pipeline {
                     }
                 }
             }
-            stage('Final stage') {
-                steps {
-                    echo "It's Done!"
-                }
-            }   
-        }     
+        }
+        stage('Final stage') {
+            steps {
+                echo "It's Done!"
+            }
+        }   
     }
 }
