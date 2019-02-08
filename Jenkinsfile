@@ -1,5 +1,7 @@
 pipeline {
-	agent { label 'ubuntu-16-git-java-maven' }
+	agent { 
+        docker { image 'cloudbees/java-build-tools' }
+    }
     parameters {
         string(name: 'username', defaultValue: 'Jenkins', description: 'How should I greet the world?')
     }
