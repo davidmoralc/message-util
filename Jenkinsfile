@@ -24,9 +24,27 @@ pipeline {
             }
         }
         stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
+            parallel {
+                stage('Test in Linux') {
+                    steps {
+                        sh 'mvn test'
+                    }
+                }
+                stage('Test in alpine') {
+                    agent { docker 'maven:3-alpine' } 
+                    steps {
+                        echo 'Hello, Maven'
+                        sh 'mvn --version'
+                    }
+                }
+                stage('Test in other docker java image') {
+                    agent { docker 'openjdk:8-jre' } 
+                    steps {
+                        echo 'Hello, JDK'
+                        sh 'java -version'
+                    }
+                }
+            }            
             post {
                 failure {
                     echo "Test failed Loser!"
@@ -39,19 +57,29 @@ pipeline {
                 }
             }
         }
-        stage('Deploy stage') {        
-            parallel {
-                stage('DeployPre') {
-                    steps {
-                        echo "Deploy in Pre ${params.username}"
-                    }
-                }
-                stage('DeployPro') {
-                    steps {
-                        echo "Deploy in Pro ${params.username}"
-                    }
-                }
+        stage('Deploy master') {        
+            when {
+                branch 'master'
+            }    
+            steps {
+                echo "No Deploy"
             }
+        }           
+        stage('Deploy prod') {                 
+            when {
+                branch 'prod'
+            }            
+            steps {
+                echo "Deploy in Production"
+            }
+        }                
+        stage('Deploy dev') {                 
+            when {
+                branch 'dev'
+            }            
+            steps {
+                echo "Deploy in Dev ${params.username}"
+            }            
         }
         stage('Final stage') {
             steps {

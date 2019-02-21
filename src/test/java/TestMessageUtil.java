@@ -13,11 +13,17 @@ public class TestMessageUtil {
     assertEquals(message,messageUtil.printMessage());
   }
 
-  // @Test
-  // public void testPrintMessageBad() {      
-  //   System.out.println("Inside testPrintMessage()");     
-  //   assertEquals(message,"nope4");
-  // }  
+  @Test
+  public void testPrintMessageBad() {      
+    System.out.println("Inside testPrintMessage()");     
+    assertEquals(message,"nope4");
+  }  
+
+  @Test
+  public void testPrintMessageBad2() {      
+    System.out.println("Inside testPrintMessage()");     
+    assertEquals(message,"nope2");
+  }    
 
   @Test
   public void testSalutationMessage() {
