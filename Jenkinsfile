@@ -70,7 +70,7 @@ pipeline {
                 branch 'prod'
             }            
             steps {
-                echo "Deploy in Production"
+                echo "Deploy in Production!"
             }
         }                
         stage('Deploy dev') {                 
