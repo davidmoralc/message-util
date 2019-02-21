@@ -30,7 +30,7 @@ pipeline {
                         sh 'mvn test'
                     }
                 }
-                stage('Test in alpine') {
+                stage('Test in alpine docker') {
                     agent { docker 'maven:3-alpine' } 
                     steps {
                         echo 'Hello, Maven'
